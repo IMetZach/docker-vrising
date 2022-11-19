@@ -99,6 +99,21 @@ To enable RCON edit `ServerHostSettings.json` and paste following lines after `Q
 },
 ```
 
+## Migrating Your Existing Server From Windows
+### Steps: 
+1. Create your container and use the "WORLDNAME" environment variable. It should match the name of your server you plan to migrate. This will pass it along as the "SaveName" argument in start.sh
+2.  Stop the container once it has completed starting up
+3.  On your Windows server your data should be located in:  
+
+    ```%USERPROFILE%\AppData\LocalLow\Stunlock Studios\VRisingServer\Cloud Save (or Saves)\v1\<guid>```
+
+4. Delete the world created by the container in the ```/mnt/vrising/persistentdata/saves/v1``` directory
+5. Copy the <guid> directory containing all the save files from your Windows server to the volume
+6. Delete ```ServerHostSettings.json``` from your world directory
+7. Rename the world directory to match the {WORLDNAME} from step 1
+8. Start the container
+
+
 ## Remarks 
 ### as requested or logged in issues
 
